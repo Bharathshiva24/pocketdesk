@@ -57,7 +57,7 @@
     const empty = h('div', { class: 'empty' }, h('div', { class: 'empty-ic' }, ic('upload')), h('div', { class: 'empty-t' }, 'Nothing here yet'),
       h('div', { class: 'empty-s' }, 'Open the Cast tab on your phone and choose photos or videos. They appear here instantly.'));
     const selText = h('span', { class: 'foot-text' });
-    const openBtn = btn('brand', 'Open on TV', () => open(selected), 'tv');
+    const openBtn = btn('brand', 'Open', () => open(selected), 'tv');
     const showBtn = btn('outline', 'Slideshow', () => open(selected < 0 ? firstIndex() : selected, true), 'play');
     win.body.append(h('div', { class: 'scroll pad' }, grid, empty));
     win.footer.append(selText, showBtn, openBtn); win.footer.hidden = false;
