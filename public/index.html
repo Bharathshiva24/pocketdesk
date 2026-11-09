@@ -42,6 +42,9 @@
   .links { display: flex; gap: 24px; color: var(--muted-fg); font-size: 15px; margin-right: auto; }
   .links a:hover { color: var(--fg); }
   .nav-btns { display: flex; gap: 10px; }
+  .note .dl { display: inline-flex; align-items: center; gap: 6px; color: var(--orange-700); font-weight: 500; }
+  .note .dl:hover { text-decoration: underline; }
+  .note .dl .ic svg { width: 16px; height: 16px; }
   .hero { text-align: center; padding: 84px 0 40px; position: relative; overflow: hidden; }
   .hero::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 56px 56px; opacity: .55; -webkit-mask-image: radial-gradient(ellipse 60% 55% at 50% 30%, #000 20%, transparent 75%); mask-image: radial-gradient(ellipse 60% 55% at 50% 30%, #000 20%, transparent 75%); pointer-events: none; }
   .hero > * { position: relative; }
@@ -101,7 +104,7 @@
       <a class="btn btn-brand" href="/tv"><span class="ic" data-i="tv"></span>Launch PocketDesk</a>
       <a class="btn btn-outline" href="/demo"><span class="ic" data-i="play"></span>Try the live demo</a>
     </div>
-    <p class="note">Open <code>/tv</code> on the TV, then scan the QR code with your phone.</p>
+    <p class="note">Open <code>/tv</code> on the TV, then scan the QR code with your phone · <a class="dl" href="https://github.com/Bharathshiva24/pocketdesk/releases/latest/download/PocketDesk.apk"><span class="ic" data-i="download"></span>Download for Android</a></p>
     <div class="shot"><picture><source srcset="assets/hero.webp" type="image/webp"><img src="assets/hero.png" width="1600" height="1138" alt="PocketDesk on a display with the phone controller beside it" fetchpriority="high" decoding="async"></picture></div>
   </div>
 </header>

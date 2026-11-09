@@ -9,7 +9,7 @@
 PocketDesk turns any TV with a web browser into a desktop with windows and a dock.
 Your Android phone or iPhone becomes its trackpad, keyboard and casting remote. Nothing to install.
 
-[**Live app**](https://getpocketdesk.vercel.app) · [Live demo](https://getpocketdesk.vercel.app/demo) · [Report a bug](https://github.com/Bharathshiva24/pocketdesk/issues)
+[**Live app**](https://getpocketdesk.vercel.app) · [**Download for Android**](https://github.com/Bharathshiva24/pocketdesk/releases/latest/download/PocketDesk.apk) · [Live demo](https://getpocketdesk.vercel.app/demo) · [Report a bug](https://github.com/Bharathshiva24/pocketdesk/issues)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](LICENSE)
 ![No build step](https://img.shields.io/badge/build-none-lightgrey)
@@ -54,7 +54,7 @@ The server prints a LAN address such as `http://192.168.1.20:8080`. Open `/tv` o
 
 ### Wired: any TV or monitor, no internet
 
-Install the native app ([Android](apps/android) · [iOS](apps/ios)), connect your phone to the TV with a USB‑C → HDMI cable, and choose that HDMI input on the TV. The desktop runs from your phone and appears on the big screen, while your phone stays the trackpad. Build steps and phone compatibility: **[docs/WIRED.md](docs/WIRED.md)**.
+Install the native app ([download the Android APK](https://github.com/Bharathshiva24/pocketdesk/releases/latest/download/PocketDesk.apk), or build it from [apps/android](apps/android) · [iOS](apps/ios)), connect your phone to the TV with a USB‑C → HDMI cable, and choose that HDMI input on the TV. The desktop runs from your phone and appears on the big screen, while your phone stays the trackpad. Build steps and phone compatibility: **[docs/WIRED.md](docs/WIRED.md)**.
 
 ### Deploy your own copy
 

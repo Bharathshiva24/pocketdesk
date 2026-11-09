@@ -6,3 +6,9 @@ dist/
 .env*
 _to_delete/
 .idea/
+
+*.apk
+*.aab
+*.jks
+*.keystore
+apps/android/app/release/
