@@ -8,9 +8,9 @@
 <meta name="theme-color" content="#ffffff">
 <meta property="og:title" content="PocketDesk — your phone is the remote, your TV is the desktop">
 <meta property="og:description" content="Turn any TV into a desktop you drive from your phone. Open source, no install, Android & iPhone.">
-<meta property="og:image" content="https://pocketdesk-pi.vercel.app/assets/og.png">
-<meta property="og:url" content="https://pocketdesk-pi.vercel.app/">
-<meta name="twitter:image" content="https://pocketdesk-pi.vercel.app/assets/og.png">
+<meta property="og:image" content="https://getpocketdesk.vercel.app/assets/og.png">
+<meta property="og:url" content="https://getpocketdesk.vercel.app/">
+<meta name="twitter:image" content="https://getpocketdesk.vercel.app/assets/og.png">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
@@ -41,6 +41,7 @@
   .brand { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 17px; }
   .links { display: flex; gap: 24px; color: var(--muted-fg); font-size: 15px; margin-right: auto; }
   .links a:hover { color: var(--fg); }
+  .nav-btns { display: flex; gap: 10px; }
   .hero { text-align: center; padding: 84px 0 40px; position: relative; overflow: hidden; }
   .hero::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 56px 56px; opacity: .55; -webkit-mask-image: radial-gradient(ellipse 60% 55% at 50% 30%, #000 20%, transparent 75%); mask-image: radial-gradient(ellipse 60% 55% at 50% 30%, #000 20%, transparent 75%); pointer-events: none; }
   .hero > * { position: relative; }
@@ -84,8 +85,10 @@
   <div class="wrap">
     <a class="brand" href="/"><img class="logo-img" src="icon.svg" width="34" height="34" alt="">PocketDesk</a>
     <div class="links"><a href="#features">Features</a><a href="#how">How it works</a><a href="#faq">FAQ</a></div>
-    <a class="btn btn-outline btn-sm" href="https://github.com/Bharathshiva24/pocketdesk" target="_blank" rel="noopener"><span class="ic" data-i="github"></span>GitHub</a>
-    <a class="btn btn-brand btn-sm" href="/tv">Open on TV</a>
+    <div class="nav-btns">
+      <a class="btn btn-outline btn-sm" href="https://github.com/Bharathshiva24/pocketdesk" target="_blank" rel="noopener"><span class="ic" data-i="github"></span>GitHub</a>
+      <a class="btn btn-brand btn-sm" href="/tv">Open</a>
+    </div>
   </div>
 </nav>
 

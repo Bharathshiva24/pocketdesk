@@ -33,7 +33,7 @@ This needs the PocketDesk **native app** (Android or iOS), because a website can
 | **Android with USB‑C video out** (DisplayPort Alt Mode) | ✅ | Most Samsung Galaxy S / Note / Z / Tab flagships, many Motorola, Sony, OnePlus, ASUS and Xiaomi models, and recent Google Pixels. Check your phone's specs for "DisplayPort", "video output" or "HDMI out". |
 | **Android with Samsung DeX / Motorola Ready For** | ✅ | If the phone starts DeX or Ready For automatically, switch the connection to **screen mirroring** mode so PocketDesk can draw its own desktop. |
 | **Android without wired video out** | ⚠️ | Use a wireless display instead (Smart View / Screen cast to a Miracast TV or dongle). Android exposes it to PocketDesk the same way. |
-| **Any phone in a browser** (no app) | ➖ | Use the hosted version with a smart TV or a computer on the TV: [pocketdesk-pi.vercel.app](https://pocketdesk-pi.vercel.app). |
+| **Any phone in a browser** (no app) | ➖ | Use the hosted version with a smart TV or a computer on the TV: [getpocketdesk.vercel.app](https://getpocketdesk.vercel.app). |
 
 TV requirements: an HDMI input. No apps, no smart features and no internet.
 

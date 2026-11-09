@@ -9,7 +9,7 @@
 PocketDesk turns any TV with a web browser into a desktop with windows and a dock.
 Your Android phone or iPhone becomes its trackpad, keyboard and casting remote. Nothing to install.
 
-[**Live app**](https://pocketdesk-pi.vercel.app) · [Live demo](https://pocketdesk-pi.vercel.app/demo) · [Report a bug](https://github.com/Bharathshiva24/pocketdesk/issues)
+[**Live app**](https://getpocketdesk.vercel.app) · [Live demo](https://getpocketdesk.vercel.app/demo) · [Report a bug](https://github.com/Bharathshiva24/pocketdesk/issues)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](LICENSE)
 ![No build step](https://img.shields.io/badge/build-none-lightgrey)
@@ -35,11 +35,11 @@ Your Android phone or iPhone becomes its trackpad, keyboard and casting remote. 
 
 ### Use the hosted version
 
-1. On the TV, open **pocketdesk-pi.vercel.app/tv** in its web browser.
-2. On your phone, scan the QR code with the camera, or open **pocketdesk-pi.vercel.app/phone** and enter the 6-digit code.
+1. On the TV, open **getpocketdesk.vercel.app/tv** in its web browser.
+2. On your phone, scan the QR code with the camera, or open **getpocketdesk.vercel.app/phone** and enter the 6-digit code.
 3. That's it. Add the phone page to your home screen for an app-like experience.
 
-> Want to look around first? The [live demo](https://pocketdesk-pi.vercel.app/demo) puts a TV and a phone side by side in one browser window.
+> Want to look around first? The [live demo](https://getpocketdesk.vercel.app/demo) puts a TV and a phone side by side in one browser window.
 
 ### Run it yourself
 
