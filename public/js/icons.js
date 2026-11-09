@@ -42,8 +42,8 @@
     restore: '<path d="M8 3v3a2 2 0 0 1-2 2H3"/><path d="M21 8h-3a2 2 0 0 1-2-2V3"/><path d="M3 16h3a2 2 0 0 1 2 2v3"/><path d="M16 21v-3a2 2 0 0 1 2-2h3"/>',
     // Window controls share one 10×10 box (x/y 7–17) so −, □ and × read the same size.
     winMin: '<path d="M7 12h10"/>',
-    winMax: '<rect x="7" y="7" width="10" height="10" rx="1.5"/>',
-    winRestore: '<rect x="7" y="9" width="8" height="8" rx="1.5"/><path d="M9 7h6.5A1.5 1.5 0 0 1 17 8.5V15"/>',
+    winMax: '<rect x="8.25" y="8.25" width="7.5" height="7.5" rx="1.25"/>',
+    winRestore: '<rect x="8" y="9.5" width="6.5" height="6.5" rx="1.25"/><path d="M10 8h4.5A1.5 1.5 0 0 1 16 9.5V14"/>',
     winClose: '<path d="m7 7 10 10"/><path d="M17 7 7 17"/>',
     copy: '<rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>',
     tile: '<rect width="7" height="18" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/>',
