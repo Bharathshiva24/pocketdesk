@@ -8,7 +8,9 @@
 <meta name="theme-color" content="#ffffff">
 <meta property="og:title" content="PocketDesk — your phone is the remote, your TV is the desktop">
 <meta property="og:description" content="Turn any TV into a desktop you drive from your phone. Open source, no install, Android & iPhone.">
-<meta property="og:image" content="/assets/og.png">
+<meta property="og:image" content="https://pocketdesk-pi.vercel.app/assets/og.png">
+<meta property="og:url" content="https://pocketdesk-pi.vercel.app/">
+<meta name="twitter:image" content="https://pocketdesk-pi.vercel.app/assets/og.png">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
@@ -50,9 +52,7 @@
   .ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
   .note { margin-top: 16px; font-size: 14px; color: var(--muted-fg); }
   .shot { position: relative; max-width: 1080px; margin: 56px auto 0; }
-  .shot .tv { border-radius: 16px; border: 1px solid var(--border); box-shadow: 0 30px 80px -20px rgb(24 24 27 / .25), 0 2px 8px rgb(0 0 0 / .05); overflow: hidden; background: #fafafa; }
-  .shot img { display: block; width: 100%; height: auto; }
-  .shot .phone { position: absolute; right: -2%; bottom: -8%; width: 21%; border-radius: 28px; border: 6px solid #18181b; box-shadow: 0 30px 60px -15px rgb(24 24 27 / .35); overflow: hidden; background: #fafafa; }
+  .shot img { display: block; width: 100%; height: auto; filter: drop-shadow(0 30px 40px rgb(24 24 27 / .18)); }
   section { padding: 88px 0; }
   .eyebrow { font-size: 14px; font-weight: 600; color: var(--orange-700); }
   h2 { font-size: clamp(28px, 4vw, 40px); letter-spacing: -.03em; line-height: 1.15; margin: 8px 0 14px; }
@@ -78,7 +78,7 @@
   code { font: 500 14px "Geist Mono", ui-monospace, monospace; background: var(--muted); border: 1px solid var(--border); border-radius: 6px; padding: 2px 7px; }
   footer { border-top: 1px solid var(--border); padding: 28px 0; color: var(--muted-fg); font-size: 14px; }
   footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-  @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } .links { display: none; } .shot .phone { display: none; } nav .btn-outline { display: none; } section { padding: 64px 0; } }
+  @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } .links { display: none; }  nav .btn-outline { display: none; } section { padding: 64px 0; } }
 </style>
 </head>
 <body>
@@ -101,10 +101,7 @@
       <a class="btn btn-outline" href="/demo"><span class="ic" data-i="play"></span>Try the live demo</a>
     </div>
     <p class="note">Open <code>/tv</code> on the TV, then scan the QR code with your phone.</p>
-    <div class="shot">
-      <div class="tv"><img src="assets/preview-tv.png" width="1920" height="1080" alt="PocketDesk desktop on a TV: dock, Photos and Notes windows, status cards"></div>
-      <div class="phone"><img src="assets/preview-phone.png" width="402" height="874" alt="PocketDesk phone trackpad"></div>
-    </div>
+    <div class="shot"><img src="assets/hero.png" width="1600" height="1137" alt="PocketDesk on a display with the phone controller beside it"></div>
   </div>
 </header>
 
