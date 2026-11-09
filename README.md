@@ -4,12 +4,12 @@
 
 # PocketDesk
 
-**Your phone is the remote. Your TV is the desktop.**
+**Your phone is your PC. Plug in and get to work.**
 
-PocketDesk turns any TV with a web browser into a desktop with windows and a dock.
-Your Android phone or iPhone becomes its trackpad, keyboard and casting remote. Nothing to install.
+PocketDesk turns your Android phone into a desktop-style workspace.
+Connect it to any monitor or TV and get windows, a dock and a full desktop on the big screen, with your phone as the trackpad and keyboard.
 
-[**Live app**](https://getpocketdesk.vercel.app) · [**Download for Android**](https://github.com/Bharathshiva24/pocketdesk/releases/latest/download/PocketDesk.apk) · [Live demo](https://getpocketdesk.vercel.app/demo) · [Report a bug](https://github.com/Bharathshiva24/pocketdesk/issues)
+[**Download for Android**](https://github.com/Bharathshiva24/pocketdesk/releases/latest/download/PocketDesk.apk) · [Website](https://getpocketdesk.vercel.app) · [Live demo](https://getpocketdesk.vercel.app/demo) · [Report a bug](https://github.com/Bharathshiva24/pocketdesk/issues)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](LICENSE)
 ![No build step](https://img.shields.io/badge/build-none-lightgrey)
@@ -22,24 +22,29 @@ Your Android phone or iPhone becomes its trackpad, keyboard and casting remote. 
 
 ## Features
 
-- **Desktop on the TV.** Windows you can move, resize and snap left/right, tile everything at once, and switch between from a dock. There's also a ⌘K-style launcher, right-click menus and status cards for battery, latency, queue and session time.
-- **Trackpad and gestures.** Tap to click, two fingers to right-click or scroll, hold then drag to move windows.
-- **Your phone's keyboard.** Type into any field on the TV, with autocorrect and dictation included.
-- **Cast photos, video and music.** Files go straight from your phone to the TV, with play/pause, seek, ±10 s, next/previous and volume control.
-- **Built-in apps.** Photos, Player, Music, Notes, Browser, Calculator and Settings.
-- **Peer-to-peer.** Phone and TV talk directly over WebRTC, so your files never touch a server.
-- **Works everywhere.** Samsung (Tizen), LG (webOS), Android/Google TV, Fire TV, or any computer plugged into the TV over HDMI. The TV remote's arrow keys move the pointer and OK clicks.
-- **Any TV, even offline.** With the Android or iOS app, plug your phone into any HDMI screen (USB‑C → HDMI, or Lightning AV adapter) and the desktop appears on it. No smart TV, no Wi‑Fi, no internet needed. See [Wired mode](docs/WIRED.md).
+- **Mobile to desktop.** Your phone runs a desktop-style workspace on the big screen: windows you can move, resize, snap and tile, a dock, a ⌘K-style launcher and right-click menus.
+- **Connect to any display.** Plug into a monitor, TV or projector over USB‑C or HDMI. No smart TV, Wi‑Fi or internet needed. See [Wired mode](docs/WIRED.md).
+- **Your phone is the trackpad and keyboard.** Tap to click, two fingers to right-click or scroll, hold then drag to move windows, and type with your phone's keyboard, including autocorrect and dictation.
+- **Ready to work.** Built-in Notes, Browser, Photos, Player, Music, Calculator and Settings.
+- **Android first.** A free APK for Android today. iPhone support is in progress.
+- **Wireless too.** No cable? Open the web version on any smart TV or computer and pair your phone (Android or iPhone) with a QR code. Phone and display talk directly over WebRTC.
 
 ## Quick start
 
-### Use the hosted version
+### Android (recommended)
 
-1. On the TV, open **getpocketdesk.vercel.app/tv** in its web browser.
+1. [Download **PocketDesk.apk**](https://github.com/Bharathshiva24/pocketdesk/releases/latest/download/PocketDesk.apk) on your Android phone and open it. Allow "Install unknown apps" when asked.
+2. Connect your phone to a monitor or TV with a USB‑C → HDMI cable or adapter, and choose that input on the display.
+3. The desktop appears on the big screen. Use your phone as the trackpad and keyboard.
+
+Your phone needs USB‑C video out (DisplayPort Alt Mode). Check the [compatibility list](docs/WIRED.md#compatibility), or use wireless mode below.
+
+### Wireless (any smart TV or computer)
+
+1. On the display, open **getpocketdesk.vercel.app/tv** in its web browser.
 2. On your phone, scan the QR code with the camera, or open **getpocketdesk.vercel.app/phone** and enter the 6-digit code.
-3. That's it. Add the phone page to your home screen for an app-like experience.
 
-> Want to look around first? The [live demo](https://getpocketdesk.vercel.app/demo) puts a TV and a phone side by side in one browser window.
+> Want to look around first? The [live demo](https://getpocketdesk.vercel.app/demo) puts a display and a phone side by side in one browser window.
 
 ### Run it yourself
 
@@ -51,10 +56,6 @@ npm start
 ```
 
 The server prints a LAN address such as `http://192.168.1.20:8080`. Open `/tv` on the TV and scan the QR code. In this mode, pairing and input go through your own server over WebSocket, and media streams from it with seeking support. Nothing leaves your network.
-
-### Wired: any TV or monitor, no internet
-
-Install the native app ([download the Android APK](https://github.com/Bharathshiva24/pocketdesk/releases/latest/download/PocketDesk.apk), or build it from [apps/android](apps/android) · [iOS](apps/ios)), connect your phone to the TV with a USB‑C → HDMI cable, and choose that HDMI input on the TV. The desktop runs from your phone and appears on the big screen, while your phone stays the trackpad. Build steps and phone compatibility: **[docs/WIRED.md](docs/WIRED.md)**.
 
 ### Deploy your own copy
 
@@ -112,8 +113,8 @@ docs/images/       Screenshots
 
 ## Limitations
 
-- **Your phone's own apps.** PocketDesk runs its own apps on the TV and uses your phone as the controller; it doesn't put other phone apps (Instagram, YouTube…) into its windows.
-- **Wired mode needs video out.** Your phone must support video over USB‑C (or use Apple's Lightning AV adapter). See the [compatibility table](docs/WIRED.md#compatibility).
+- **Your phone's own apps.** PocketDesk comes with its own desktop apps; it doesn't put other phone apps (Instagram, YouTube…) into its windows yet.
+- **Wired mode needs video out.** Your phone must support video over USB‑C (DisplayPort Alt Mode). See the [compatibility table](docs/WIRED.md#compatibility).
 - **Restrictive networks.** A few corporate or mobile networks block peer-to-peer connections. Use the self-hosted mode there.
 - **Embedded websites.** Many sites refuse to be shown inside another page, so they'll appear blank in the Browser app.
 - **Secure context features.** Screen wake lock and battery level need HTTPS. They work on the hosted version, and quietly switch off on a plain-HTTP LAN server.

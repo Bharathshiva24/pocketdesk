@@ -1,7 +1,7 @@
 {
   "name": "PocketDesk",
   "short_name": "PocketDesk",
-  "description": "Your phone is the trackpad, keyboard and remote for a desktop on your TV.",
+  "description": "Turn your phone into a PC-like desktop on any display.",
   "start_url": "/phone",
   "scope": "/",
   "display": "standalone",

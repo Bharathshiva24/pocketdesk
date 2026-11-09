@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PocketDesk — your phone is the remote, your TV is the desktop</title>
-<meta name="description" content="PocketDesk turns any TV with a web browser into a desktop you drive from your phone — trackpad, keyboard, casting and media controls. Open source, no install.">
+<title>PocketDesk — turn your phone into a PC</title>
+<meta name="description" content="PocketDesk turns your Android phone into a desktop-style workspace. Connect it to any monitor or TV and start working, with your phone as the trackpad and keyboard. Free and open source.">
 <meta name="theme-color" content="#ffffff">
-<meta property="og:title" content="PocketDesk — your phone is the remote, your TV is the desktop">
-<meta property="og:description" content="Turn any TV into a desktop you drive from your phone. Open source, no install, Android & iPhone.">
+<meta property="og:title" content="PocketDesk — turn your phone into a PC">
+<meta property="og:description" content="Plug your Android phone into any display and get a desktop-style workspace. Free APK, open source.">
 <meta property="og:image" content="https://getpocketdesk.vercel.app/assets/og.png">
 <meta property="og:url" content="https://getpocketdesk.vercel.app/">
 <meta name="twitter:image" content="https://getpocketdesk.vercel.app/assets/og.png">
@@ -75,6 +75,9 @@
   details[open] summary::after { content: "–"; }
   details p { color: var(--muted-fg); margin: 10px 0 0; }
   .faq { max-width: 760px; margin-top: 32px; }
+  .wl { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  .wl h2 { margin-bottom: 8px; }
+  .wl .lede { font-size: 16px; }
   .cta-band { text-align: center; }
   .cta-band .card { padding: 48px 24px; }
   code { font: 500 14px "Geist Mono", ui-monospace, monospace; background: var(--muted); border: 1px solid var(--border); border-radius: 6px; padding: 2px 7px; }
@@ -87,40 +90,40 @@
 <nav class="top">
   <div class="wrap">
     <a class="brand" href="/"><img class="logo-img" src="icon.svg" width="34" height="34" alt="">PocketDesk</a>
-    <div class="links"><a href="#features">Features</a><a href="#how">How it works</a><a href="#faq">FAQ</a></div>
+    <div class="links"><a href="#features">Features</a><a href="#how">How it works</a><a href="#wireless">Wireless</a><a href="#faq">FAQ</a></div>
     <div class="nav-btns">
       <a class="btn btn-outline btn-sm" href="https://github.com/Bharathshiva24/pocketdesk" target="_blank" rel="noopener"><span class="ic" data-i="github"></span>GitHub</a>
-      <a class="btn btn-brand btn-sm" href="/tv">Launch PocketDesk</a>
+      <a class="btn btn-brand btn-sm" href="https://github.com/Bharathshiva24/pocketdesk/releases/latest/download/PocketDesk.apk">Download APK</a>
     </div>
   </div>
 </nav>
 
 <header class="hero">
   <div class="wrap">
-    <span class="badge"><i></i>Open source · MIT · No install</span>
-    <h1>Your phone is the remote.<br><span>Your TV is the desktop.</span></h1>
-    <p class="sub">PocketDesk turns any TV with a web browser into a desktop with windows and a dock — and your Android or iPhone into its trackpad, keyboard and casting remote.</p>
+    <span class="badge"><i></i>Android · Free &amp; open source</span>
+    <h1>Your phone is your PC.<br><span>Plug in and get to work.</span></h1>
+    <p class="sub">PocketDesk turns your Android phone into a desktop-style workspace. Connect it to a monitor or TV and get windows, a dock and a full desktop on the big screen, with your phone as the trackpad and keyboard.</p>
     <div class="ctas">
-      <a class="btn btn-brand" href="/tv"><span class="ic" data-i="tv"></span>Launch PocketDesk</a>
+      <a class="btn btn-brand" href="https://github.com/Bharathshiva24/pocketdesk/releases/latest/download/PocketDesk.apk"><span class="ic" data-i="download"></span>Download for Android</a>
       <a class="btn btn-outline" href="/demo"><span class="ic" data-i="play"></span>Try the live demo</a>
     </div>
-    <p class="note">Open <code>/tv</code> on the TV, then scan the QR code with your phone · <a class="dl" href="https://github.com/Bharathshiva24/pocketdesk/releases/latest/download/PocketDesk.apk"><span class="ic" data-i="download"></span>Download for Android</a></p>
-    <div class="shot"><picture><source srcset="assets/hero.webp" type="image/webp"><img src="assets/hero.png" width="1600" height="1138" alt="PocketDesk on a display with the phone controller beside it" fetchpriority="high" decoding="async"></picture></div>
+    <p class="note">Free APK · Android 8.0+ · Works with phones that support USB‑C video out · <a class="dl" href="#wireless">No cable? Go wireless</a></p>
+    <div class="shot"><picture><source srcset="assets/hero.webp" type="image/webp"><img src="assets/hero.png" width="1600" height="1138" alt="PocketDesk desktop on an external display, controlled from a phone" fetchpriority="high" decoding="async"></picture></div>
   </div>
 </header>
 
 <section id="features">
   <div class="wrap">
     <div class="eyebrow">Features</div>
-    <h2>A real desktop, on the biggest screen you own</h2>
-    <p class="lede">Built for the sofa: big type, a dock you can read from across the room, and controls that live in your hand.</p>
+    <h2>A desktop that fits in your pocket</h2>
+    <p class="lede">Everything you need to work on a bigger screen, powered by the phone you already carry.</p>
     <div class="grid">
-      <div class="card"><span class="ibox"><span class="ic" data-i="touchpad"></span></span><h3>Trackpad &amp; gestures</h3><p>Tap to click, two fingers to scroll or right-click, hold to drag windows around.</p></div>
-      <div class="card"><span class="ibox"><span class="ic" data-i="keyboard"></span></span><h3>Your phone’s keyboard</h3><p>Type into any field on the TV — autocorrect and dictation included.</p></div>
-      <div class="card"><span class="ibox"><span class="ic" data-i="cast"></span></span><h3>Cast photos, video &amp; music</h3><p>Pick files from your library and they open on the TV with play, seek and volume control.</p></div>
-      <div class="card"><span class="ibox"><span class="ic" data-i="tile"></span></span><h3>Windows, dock &amp; snapping</h3><p>Move, resize, snap left/right, tile everything, and switch apps from the dock.</p></div>
-      <div class="card"><span class="ibox"><span class="ic" data-i="link"></span></span><h3>Peer-to-peer</h3><p>Phone and TV talk directly over WebRTC. Your files go device to device, not through a server.</p></div>
-      <div class="card"><span class="ibox"><span class="ic" data-i="phone"></span></span><h3>Android &amp; iPhone</h3><p>Nothing to install on either side. Add it to your home screen for an app-like feel.</p></div>
+      <div class="card"><span class="ibox"><span class="ic" data-i="monitor"></span></span><h3>Connect to any display</h3><p>Monitor, TV or projector over USB‑C or HDMI. No smart TV, Wi‑Fi or internet needed.</p></div>
+      <div class="card"><span class="ibox"><span class="ic" data-i="appWindow"></span></span><h3>Desktop-style interface</h3><p>Resizable windows, a dock, snapping and tiling, and a quick launcher, sized for a big screen.</p></div>
+      <div class="card"><span class="ibox"><span class="ic" data-i="touchpad"></span></span><h3>Your phone is the trackpad</h3><p>Tap to click, two fingers to scroll or right-click, hold to drag windows around.</p></div>
+      <div class="card"><span class="ibox"><span class="ic" data-i="keyboard"></span></span><h3>…and the keyboard</h3><p>Type into any field on the desktop, with your phone’s autocorrect and dictation.</p></div>
+      <div class="card"><span class="ibox"><span class="ic" data-i="grid"></span></span><h3>Ready to work</h3><p>Built-in Notes, Browser, Photos, Player, Music and Calculator, open the moment you connect.</p></div>
+      <div class="card"><span class="ibox"><span class="ic" data-i="phone"></span></span><h3>Android first</h3><p>A free, open-source APK for Android today. iPhone support is in progress.</p></div>
     </div>
   </div>
 </section>
@@ -128,24 +131,36 @@
 <section id="how" class="alt">
   <div class="wrap">
     <div class="eyebrow">How it works</div>
-    <h2>Connected in about ten seconds</h2>
+    <h2>Ready to work in three steps</h2>
     <div class="grid steps">
-      <div class="card"><span class="step-n">1</span><h3>Open PocketDesk on the TV</h3><p>Use the TV’s web browser (Samsung, LG, Android TV, Fire TV) or any computer plugged in over HDMI. Go to <code>/tv</code>.</p></div>
-      <div class="card"><span class="step-n">2</span><h3>Scan the QR code</h3><p>Point your phone camera at the code on the TV, or open <code>/phone</code> and type the 6-digit code.</p></div>
-      <div class="card"><span class="step-n">3</span><h3>Drive the desktop</h3><p>Use the trackpad, type, open apps from the dock and cast your photos and videos.</p></div>
+      <div class="card"><span class="step-n">1</span><h3>Install the app</h3><p>Download <code>PocketDesk.apk</code> on your Android phone and open it. Allow “Install unknown apps” when asked.</p></div>
+      <div class="card"><span class="step-n">2</span><h3>Connect a display</h3><p>Plug your phone into a monitor or TV with a USB‑C to HDMI cable or adapter, and choose that input.</p></div>
+      <div class="card"><span class="step-n">3</span><h3>Start working</h3><p>The desktop appears on the big screen and your phone becomes its trackpad and keyboard.</p></div>
     </div>
   </div>
 </section>
 
-<section id="faq">
+<section id="wireless">
+  <div class="wrap wl">
+    <div>
+      <div class="eyebrow">Also works wirelessly</div>
+      <h2>No cable? Use any smart TV or computer</h2>
+      <p class="lede">Open PocketDesk in the display’s web browser and scan the QR code with your phone. Works with Android and iPhone, no install needed.</p>
+    </div>
+    <a class="btn btn-outline" href="/tv"><span class="ic" data-i="wifi"></span>Open wireless mode</a>
+  </div>
+</section>
+
+<section id="faq" class="alt">
   <div class="wrap">
     <div class="eyebrow">FAQ</div>
     <h2>Good to know</h2>
     <div class="faq">
-      <details open><summary>Can I run my phone’s own apps on the TV?</summary><p>Not with a web app. PocketDesk runs its own desktop apps on the TV and uses your phone as the controller. Mirroring Android apps would need a native Android app; iOS doesn’t allow it for third-party apps.</p></details>
-      <details><summary>Do my phone and TV need to be on the same Wi‑Fi?</summary><p>No — they only need internet access to find each other. On the same network the connection is direct and fastest. A few strict corporate or mobile networks block peer-to-peer traffic; the self-hosted server mode works there.</p></details>
-      <details><summary>Where do my photos go?</summary><p>Straight from your phone to the TV over an encrypted WebRTC data channel. They live only in the TV’s browser memory and disappear when you close the page.</p></details>
-      <details><summary>Can I host it myself?</summary><p>Yes. Run <code>npm start</code> for a LAN server, or deploy the static <code>public/</code> folder anywhere. See the README on GitHub.</p></details>
+      <details open><summary>Which phones work with a cable?</summary><p>Phones that send video out over USB‑C (DisplayPort Alt Mode), such as many Samsung Galaxy S, Note and Tab models, Pixel 8 and later, and recent Motorola and OnePlus flagships. If your phone can’t, use wireless mode instead. See the <a href="https://github.com/Bharathshiva24/pocketdesk/blob/main/docs/WIRED.md#compatibility">compatibility list</a>.</p></details>
+      <details><summary>Does it need internet?</summary><p>Not with a cable. Wired mode runs entirely on your phone and works offline. Wireless mode needs both devices online to find each other.</p></details>
+      <details><summary>Can I use my phone’s own apps on the desktop?</summary><p>Not yet. PocketDesk comes with its own desktop apps (Notes, Browser, Photos, Player, Music, Calculator). Your other phone apps keep running on the phone as usual.</p></details>
+      <details><summary>Is there an iPhone version?</summary><p>Wireless mode already works with iPhone. A native iPhone app for wired displays is in progress.</p></details>
+      <details><summary>Is it really free?</summary><p>Yes. PocketDesk is open source under the MIT licence. The code, including the Android app, is on GitHub.</p></details>
     </div>
   </div>
 </section>
@@ -153,15 +168,15 @@
 <section class="cta-band">
   <div class="wrap">
     <div class="card">
-      <h2>Turn on the big screen</h2>
-      <p class="lede" style="margin:0 auto 26px">Open PocketDesk on your TV and pair your phone. It’s free and open source.</p>
-      <div class="ctas"><a class="btn btn-brand" href="/tv">Launch PocketDesk</a><a class="btn btn-outline" href="https://github.com/Bharathshiva24/pocketdesk" target="_blank" rel="noopener"><span class="ic" data-i="github"></span>Star on GitHub</a></div>
+      <h2>Turn your phone into a PC</h2>
+      <p class="lede" style="margin:0 auto 26px">Download the free Android app, plug into a display and start working.</p>
+      <div class="ctas"><a class="btn btn-brand" href="https://github.com/Bharathshiva24/pocketdesk/releases/latest/download/PocketDesk.apk"><span class="ic" data-i="download"></span>Download for Android</a><a class="btn btn-outline" href="https://github.com/Bharathshiva24/pocketdesk" target="_blank" rel="noopener"><span class="ic" data-i="github"></span>Star on GitHub</a></div>
     </div>
   </div>
 </section>
 
 <footer>
-  <div class="wrap"><span>© 2026 PocketDesk · MIT licence</span><span>Built with web standards · <a href="https://github.com/Bharathshiva24/pocketdesk">Source on GitHub</a></span></div>
+  <div class="wrap"><span>© 2026 PocketDesk · MIT licence</span><span>Android first · <a href="https://github.com/Bharathshiva24/pocketdesk">Source on GitHub</a></span></div>
 </footer>
 <script src="js/icons.js"></script>
 <script>document.querySelectorAll('[data-i]').forEach((el) => { el.innerHTML = PocketDeskIcons[el.dataset.i] || ''; });</script>

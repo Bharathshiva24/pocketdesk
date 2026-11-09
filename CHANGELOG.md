@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- New positioning: PocketDesk turns your Android phone into a PC-like desktop on any external display. Wired (USB‑C / HDMI) first, wireless as a secondary option
+- Landing page, README and link preview rewritten; primary call to action is now the Android APK download
 - Casting: videos the TV browser can't decode (usually HEVC / H.265) now show a clear message on the TV and a fix-it tip on the phone, instead of a black screen
 - Casting: files with no MIME type are detected by extension (e.g. .mkv, .mov)
 
