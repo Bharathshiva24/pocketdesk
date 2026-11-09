@@ -20,6 +20,15 @@
     return el;
   }
   const ic = (n) => h('span', { class: 'ic', html: I[n] || '' });
+  const MEDIA_EXT = { video: /\.(mp4|m4v|mov|webm|mkv|3gp|avi)$/i, audio: /\.(mp3|m4a|aac|wav|ogg|oga|flac|opus)$/i };
+  const mediaKind = (file) => {
+    const t = file.type || '';
+    if (t.startsWith('video')) return 'video';
+    if (t.startsWith('audio')) return 'audio';
+    if (t.startsWith('image')) return 'image';
+    const n = file.name || '';
+    return MEDIA_EXT.video.test(n) ? 'video' : MEDIA_EXT.audio.test(n) ? 'audio' : 'image';
+  };
   const badge = (status, label) => h('span', { class: `badge badge-${status}` }, h('span', { class: 'badge-dot' }), label);
   const btn = (variant, label, onclick, icon, extra = '') => h('button', { class: `btn btn-${variant} ${extra}`, onclick, type: 'button' }, icon ? ic(icon) : null, label ? h('span', {}, label) : null);
   const buzz = (ms = 8) => { try { if (navigator.vibrate) navigator.vibrate(ms); } catch { /* unsupported */ } };
@@ -284,13 +293,16 @@
     buildCast() {
       const picker = h('input', { type: 'file', accept: 'image/*,video/*,audio/*', multiple: true, class: 'file-input' });
       picker.addEventListener('change', () => { const files = [...picker.files]; picker.value = ''; this.castFiles(files); });
-      this.castList = h('div', {});
+      this.castList = h('div', {}); this.castRows = new Map();
+      this.castTip = h('div', { class: 'card tip-card', hidden: true }, h('div', { class: 'card-label' }, 'Video would not play on the TV'),
+        h('p', { class: 'muted small' }, 'Phones often record in HEVC (H.265), which many TV and computer browsers cannot play. Switch your camera to H.264 — on iPhone: Settings › Camera › Formats › Most Compatible; on Android: turn off “High-efficiency video” in the camera settings — or send an MP4 (H.264) copy.'));
       this.castCard = h('div', { class: 'card list-card', hidden: true }, h('div', { class: 'card-label' }, 'Recent'), this.castList);
       const link = h('input', { class: 'input', type: 'url', inputmode: 'url', placeholder: 'Paste a link to open on TV', autocapitalize: 'off', enterkeyhint: 'go' });
       const openLink = () => { const u = link.value.trim(); if (!u) return; buzz(); this.send({ t: 'open', app: 'web', payload: { url: u } }); link.value = ''; link.blur(); };
       link.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); openLink(); } });
       return h('section', { class: 'view v-cast' },
         h('label', { class: 'dropzone' }, picker, h('span', { class: 'logo' }, ic('upload')), h('b', {}, 'Choose photos, videos or music'), h('span', { class: 'muted small' }, 'They open on the TV straight away'), h('span', { class: 'btn btn-brand btn-sm' }, 'Browse library')),
+        this.castTip,
         this.castCard,
         h('div', { class: 'link-row' }, h('div', { class: 'input-wrap' }, ic('link'), link), btn('primary', 'Open', openLink, null, 'btn-lg')));
     }
@@ -298,7 +310,7 @@
       this.castCard.hidden = false;
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
-        const kind = file.type.startsWith('video') ? 'video' : file.type.startsWith('audio') ? 'audio' : 'image';
+        const kind = mediaKind(file);
         const preview = URL.createObjectURL(file);
         this.localMedia.set(file.name, { url: preview, kind });
         const fill = h('span', { class: 'progress-fill' });
@@ -307,6 +319,7 @@
         const thumb = kind === 'image' ? h('img', { class: 'thumb', src: preview, alt: '' }) : h('span', { class: 'thumb icon-box' }, ic(kind === 'video' ? 'tv' : 'music'));
         const row = h('div', { class: 'row' }, thumb, h('span', { class: 'list-main' }, h('span', { class: 'list-t' }, file.name || 'file'), h('span', { class: 'progress' }, fill), meta), st);
         this.castList.prepend(row);
+        this.castRows.set(file.name, { st, meta });
         try {
           const url = await this.tr.upload(file, (p) => { fill.style.width = `${Math.round(p * 100)}%`; meta.textContent = `Sending · ${Math.round(p * 100)}%`; });
           row.querySelector('.progress').remove(); meta.textContent = fmtSize(file.size);
@@ -424,6 +437,13 @@
           this.renderMedia(m);
           if (m.kind === 'video' && this.lastKind !== 'video') this.show('media');
           this.lastKind = m.kind; break;
+        case 'cast-status': {
+          if (m.ok) break;
+          const r = this.castRows && this.castRows.get(m.name);
+          if (r) { r.st.replaceChildren(badge('error', 'Can\u2019t play')); r.meta.textContent = 'Format not supported on the TV'; }
+          if (this.castTip) this.castTip.hidden = false;
+          this.show('cast'); buzz(60); break;
+        }
         case 'kbd-hint': this.kbdTarget.replaceChildren(badge('info', m.field)); break;
         default: break;
       }

@@ -203,3 +203,6 @@
 .pd-phone .dh-phone .ic { width: 26px; height: 26px; }
 .pd-phone .dh-cable { width: 70px; height: 0; border-top: 2px dashed var(--orange-500); animation: pd-cable 1.2s linear infinite; }
 @keyframes pd-cable { to { border-top-color: var(--orange-200); } }
+.pd-phone .tip-card { margin-bottom: 12px; border-color: var(--amber-200, #FDE68A); background: var(--amber-50, #FFFBEB); }
+.pd-phone .tip-card .card-label { color: var(--amber-700, #B45309); }
+.pd-phone .tip-card p { margin: 0; padding: 0 16px 14px; line-height: 1.45; }

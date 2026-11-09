@@ -146,18 +146,39 @@
         win.setTitle('Player'); win.setDesc('Nothing playing'); sync(true); return;
       }
       win.setTitle(m.name); win.setDesc(`${m.kind === 'video' ? 'Video' : m.kind === 'audio' ? 'Song' : 'Photo'} · ${index + 1} of ${desk.media.length}`);
+      if (m.bad) { showBad(m); return; }
       if (m.kind === 'video' || m.kind === 'audio') {
         if (m.kind === 'audio') stage.append(h('div', { class: 'pl-art' }, h('div', { class: 'pl-art-ic' }, ic('music')), h('div', { class: 'pl-art-t' }, m.name)));
         const v = h(m.kind, { src: m.url, autoplay: true, playsinline: true });
         ['play', 'pause', 'timeupdate', 'loadedmetadata', 'volumechange'].forEach((ev) => v.addEventListener(ev, () => sync(ev !== 'timeupdate')));
         v.addEventListener('ended', () => { if (index < desk.media.length - 1) go(1); });
-        if (m.kind === 'video') v.addEventListener('click', toggle);
+        if (m.kind === 'video') {
+          v.addEventListener('click', toggle);
+          // A video the browser can't decode (often HEVC / H.265) plays its sound over a black frame, or errors.
+          const check = () => { if (desk.media[index] === m && v.currentTime > 0.3 && !v.videoWidth) unplayable(m, v); };
+          v.addEventListener('timeupdate', check);
+        }
+        v.addEventListener('error', () => { if (desk.media[index] === m) unplayable(m, v); });
         stage.append(v);
         v.play().catch(() => { v.muted = true; v.play().catch(() => {}); }); // autoplay policies
       } else {
         stage.append(h('img', { src: m.url, alt: m.name }));
         if (slideshow) slideT = setTimeout(() => go(1), 5000);
       }
+      sync(true);
+    }
+    function unplayable(m, v) {
+      if (m.bad) return; m.bad = true;
+      try { v.pause(); v.removeAttribute('src'); v.load(); } catch { /* already gone */ }
+      showBad(m);
+      desk.toast(`Can't play ${m.name}`, 'This browser does not support the video format.', 'warning');
+      desk.send({ t: 'cast-status', name: m.name, ok: false, reason: 'format' });
+    }
+    function showBad(m) {
+      stage.innerHTML = '';
+      stage.append(h('div', { class: 'empty dark' }, h('div', { class: 'empty-ic' }, ic('alert')),
+        h('div', { class: 'empty-t' }, 'This video format is not supported here'),
+        h('div', { class: 'empty-s' }, 'It is probably HEVC (H.265), which most phones record by default. Record in H.264 (iPhone: Settings › Camera › Formats › Most Compatible) or send an MP4 (H.264) copy.')));
       sync(true);
     }
     function go(d) { if (!desk.media.length) return; index = (index + d + desk.media.length) % desk.media.length; show(); }

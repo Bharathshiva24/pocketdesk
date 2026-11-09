@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Casting: videos the TV browser can't decode (usually HEVC / H.265) now show a clear message on the TV and a fix-it tip on the phone, instead of a black screen
+- Casting: files with no MIME type are detected by extension (e.g. .mkv, .mov)
+
 ## 1.1.0 — 2026-11-10
 
 - **Wired mode:** native Android and iOS apps show the desktop on any TV or monitor connected over HDMI / USB‑C, fully offline (no smart TV or internet needed)
