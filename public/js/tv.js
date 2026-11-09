@@ -806,7 +806,7 @@
       win.titleEl = h('div', { class: 'win-t' }, CATALOG[id].name);
       win.descEl = h('div', { class: 'win-d' }, def.desc(this));
       win.tools = h('div', { class: 'win-tools' });
-      win.maxBtn = iconBtn('square', () => this.toggleMax(win), 'Maximise');
+      win.maxBtn = iconBtn('winMax', () => this.toggleMax(win), 'Maximise');
       win.body = h('div', { class: 'win-body' });
       win.footer = h('div', { class: 'win-foot' }); win.footer.hidden = true;
       win.el = h('div', { class: 'win opening' },
@@ -828,7 +828,7 @@
       el.classList.toggle('max', win.max); el.classList.toggle('min', win.min);
       const g = win.max ? AREA : win;
       Object.assign(el.style, { left: `${g.x}px`, top: `${g.y}px`, width: `${g.w}px`, height: `${g.h}px`, zIndex: win.z });
-      win.maxBtn.innerHTML = win.max ? I.copy : I.square;
+      win.maxBtn.innerHTML = win.max ? I.winRestore : I.winMax;
     }
     focusWin(win) {
       if (!win) { this.renderDock(); this.refreshStatus(); return; }

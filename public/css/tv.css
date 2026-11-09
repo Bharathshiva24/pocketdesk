@@ -149,7 +149,6 @@
 .pd-tv .win-ctl { display: flex; gap: 2px; }
 .pd-tv .win-ctl .btn-icon { width: 42px; height: 42px; }
 .pd-tv .win-ctl .ic { width: 18px; height: 18px; }
-.pd-tv .win-ctl .btn:nth-child(2) .ic { width: 14px; height: 14px; } /* maximise square reads larger than − and × */
 .pd-tv .win-ctl .btn:last-child:is(:hover, .hov) { background: var(--red-50); color: var(--red-700); }
 .pd-tv .win-body { position: relative; flex: 1; min-height: 0; display: flex; flex-direction: column; }
 .pd-tv .win-body > .scroll { flex: 1; min-height: 0; }
