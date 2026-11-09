@@ -78,6 +78,24 @@
   .wl { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
   .wl h2 { margin-bottom: 8px; }
   .wl .lede { font-size: 16px; }
+  .compat { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 40px; }
+  .compat .card { padding: 10px 0 4px; }
+  .compat h3 { margin: 10px 20px 10px; font-size: 17px; }
+  .compat table { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+  .compat td { padding: 11px 20px; border-top: 1px solid var(--border); vertical-align: top; }
+  .compat td:last-child { text-align: right; white-space: nowrap; }
+  .pill { display: inline-block; padding: 2px 10px; border-radius: 999px; font-size: 12.5px; font-weight: 500; }
+  .pill-ok { background: var(--emerald-50); color: var(--emerald-700); border: 1px solid var(--emerald-200); }
+  .pill-wl { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+  .pill-soon { background: var(--orange-50); color: var(--orange-700); border: 1px solid var(--orange-200); }
+  .compat-note { margin: 18px 2px 0; font-size: 14px; color: var(--muted-fg); max-width: 760px; }
+  .compat-note a { color: var(--orange-700); font-weight: 500; }
+  .muted-s { color: var(--muted-fg); font-size: 13px; }
+  @media (max-width: 860px) { .compat { grid-template-columns: 1fr; } .compat td:last-child { white-space: normal; } }
+  .shot { will-change: transform; }
+  .reveal { opacity: 0; transform: translateY(26px); transition: opacity .6s cubic-bezier(.2,.6,.2,1), transform .6s cubic-bezier(.2,.6,.2,1); }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
   .cta-band { text-align: center; }
   .cta-band .card { padding: 48px 24px; }
   code { font: 500 14px "Geist Mono", ui-monospace, monospace; background: var(--muted); border: 1px solid var(--border); border-radius: 6px; padding: 2px 7px; }
@@ -90,7 +108,7 @@
 <nav class="top">
   <div class="wrap">
     <a class="brand" href="/"><img class="logo-img" src="icon.svg" width="34" height="34" alt="">PocketDesk</a>
-    <div class="links"><a href="#features">Features</a><a href="#how">How it works</a><a href="#wireless">Wireless</a><a href="#faq">FAQ</a></div>
+    <div class="links"><a href="#features">Features</a><a href="#how">How it works</a><a href="#wireless">Wireless</a><a href="#compatibility">Compatibility</a><a href="#faq">FAQ</a></div>
     <div class="nav-btns">
       <a class="btn btn-outline btn-sm" href="https://github.com/Bharathshiva24/pocketdesk" target="_blank" rel="noopener"><span class="ic" data-i="github"></span>GitHub</a>
       <a class="btn btn-brand btn-sm" href="https://github.com/Bharathshiva24/pocketdesk/releases/latest/download/PocketDesk.apk">Download APK</a>
@@ -105,9 +123,9 @@
     <p class="sub">PocketDesk turns your Android phone into a desktop-style workspace. Connect it to a monitor or TV and get windows, a dock and a full desktop on the big screen, with your phone as the trackpad and keyboard.</p>
     <div class="ctas">
       <a class="btn btn-brand" href="https://github.com/Bharathshiva24/pocketdesk/releases/latest/download/PocketDesk.apk"><span class="ic" data-i="download"></span>Download for Android</a>
-      <a class="btn btn-outline" href="/demo"><span class="ic" data-i="play"></span>Try the live demo</a>
+      <a class="btn btn-outline" href="/tv"><span class="ic" data-i="wifi"></span>Wireless</a>
     </div>
-    <p class="note">Free APK · Android 8.0+ · Works with phones that support USB‑C video out · <a class="dl" href="#wireless">No cable? Go wireless</a></p>
+    <p class="note">Free APK · Android 8.0+ · Works with phones that support USB‑C video out · <a class="dl" href="/demo"><span class="ic" data-i="play"></span>Interactive demo</a></p>
     <div class="shot"><picture><source srcset="assets/hero.webp" type="image/webp"><img src="assets/hero.png" width="1600" height="1138" alt="PocketDesk desktop on an external display, controlled from a phone" fetchpriority="high" decoding="async"></picture></div>
   </div>
 </header>
@@ -151,7 +169,41 @@
   </div>
 </section>
 
-<section id="faq" class="alt">
+<section id="compatibility" class="alt">
+  <div class="wrap">
+    <div class="eyebrow">Compatibility</div>
+    <h2>Will it work with my devices?</h2>
+    <p class="lede">Wired mode needs a phone with USB‑C video out (DisplayPort Alt Mode). Every other phone can use wireless mode.</p>
+    <div class="compat">
+      <div class="card">
+        <h3>Phones</h3>
+        <table>
+          <tr><td>Samsung Galaxy S8 and later <span class="muted-s">(S · Note · Z · Tab flagships)</span></td><td><span class="pill pill-ok">Wired + wireless</span></td></tr>
+          <tr><td>Google Pixel 8 and later</td><td><span class="pill pill-ok">Wired + wireless</span></td></tr>
+          <tr><td>Motorola Edge flagships <span class="muted-s">(“Ready For” models)</span></td><td><span class="pill pill-ok">Wired + wireless</span></td></tr>
+          <tr><td>Sony Xperia 1 / 5 · ASUS ROG Phone</td><td><span class="pill pill-ok">Wired + wireless</span></td></tr>
+          <tr><td>Huawei Mate 10 / P20 and later</td><td><span class="pill pill-ok">Wired + wireless</span></td></tr>
+          <tr><td>Pixel 7 and earlier · most Xiaomi, Redmi &amp; POCO · most OnePlus <span class="muted-s">(no video out)</span></td><td><span class="pill pill-wl">Wireless</span></td></tr>
+          <tr><td>iPhone &amp; iPad</td><td><span class="pill pill-wl">Wireless</span> <span class="pill pill-soon">Wired app in progress</span></td></tr>
+        </table>
+      </div>
+      <div class="card">
+        <h3>Displays</h3>
+        <table>
+          <tr><td>Monitor, TV or projector with HDMI <span class="muted-s">(USB‑C → HDMI cable)</span></td><td><span class="pill pill-ok">Wired · offline</span></td></tr>
+          <tr><td>USB‑C monitor <span class="muted-s">(single cable)</span></td><td><span class="pill pill-ok">Wired · offline</span></td></tr>
+          <tr><td>Samsung smart TV <span class="muted-s">(Tizen, 2017+)</span> · LG <span class="muted-s">(webOS)</span></td><td><span class="pill pill-wl">Wireless · TV browser</span></td></tr>
+          <tr><td>Android TV · Google TV · Fire TV stick</td><td><span class="pill pill-wl">Wireless · TV browser</span></td></tr>
+          <tr><td>Any computer <span class="muted-s">(Windows · Mac · Linux)</span></td><td><span class="pill pill-wl">Wireless · any browser</span></td></tr>
+          <tr><td>Old TV with no smart features</td><td><span class="pill pill-ok">Wired</span> <span class="pill pill-wl">or add a streaming stick</span></td></tr>
+        </table>
+      </div>
+    </div>
+    <p class="compat-note"><b>Rule of thumb:</b> if your phone’s spec sheet mentions “DisplayPort Alt Mode”, “video output” or “DeX”, wired mode works. If the screen stays blank when you plug in, your phone doesn’t have video out — wireless mode works on every phone. Full details and build notes: <a href="https://github.com/Bharathshiva24/pocketdesk/blob/main/docs/WIRED.md">docs/WIRED.md</a>.</p>
+  </div>
+</section>
+
+<section id="faq">
   <div class="wrap">
     <div class="eyebrow">FAQ</div>
     <h2>Good to know</h2>
@@ -180,5 +232,26 @@
 </footer>
 <script src="js/icons.js"></script>
 <script>document.querySelectorAll('[data-i]').forEach((el) => { el.innerHTML = PocketDeskIcons[el.dataset.i] || ''; });</script>
+<script>
+(() => {
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  // Parallax: the hero screenshot scrolls a touch slower than the page.
+  const shot = document.querySelector('.hero .shot');
+  let raf = 0;
+  const parallax = () => {
+    raf = 0;
+    const y = Math.min(window.scrollY, 1200);
+    if (shot) shot.style.transform = `translateY(${(y * 0.14).toFixed(1)}px)`;
+  };
+  addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(parallax); }, { passive: true });
+  parallax();
+
+  // Gentle reveal as cards enter the viewport.
+  const items = document.querySelectorAll('section .card, section .eyebrow, section h2, section .lede, .faq details');
+  const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
+  items.forEach((el, i) => { el.classList.add('reveal'); el.style.transitionDelay = `${(i % 3) * 70}ms`; io.observe(el); });
+})();
+</script>
 </body>
 </html>
