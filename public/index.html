@@ -45,7 +45,7 @@
   .note .dl { display: inline-flex; align-items: center; gap: 6px; color: var(--orange-700); font-weight: 500; }
   .note .dl:hover { text-decoration: underline; }
   .note .dl .ic svg { width: 16px; height: 16px; }
-  .hero { text-align: center; padding: 84px 0 40px; position: relative; overflow: hidden; }
+  .hero { text-align: center; padding: 84px 0 40px; position: relative; overflow-x: clip; }
   .hero::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 56px 56px; opacity: .55; -webkit-mask-image: radial-gradient(ellipse 60% 55% at 50% 30%, #000 20%, transparent 75%); mask-image: radial-gradient(ellipse 60% 55% at 50% 30%, #000 20%, transparent 75%); pointer-events: none; }
   .hero > * { position: relative; }
   h1 { font-size: clamp(38px, 6vw, 66px); line-height: 1.05; letter-spacing: -.035em; margin: 22px auto 18px; max-width: 900px; font-weight: 700; }
@@ -92,7 +92,8 @@
   .compat-note a { color: var(--orange-700); font-weight: 500; }
   .muted-s { color: var(--muted-fg); font-size: 13px; }
   @media (max-width: 860px) { .compat { grid-template-columns: 1fr; } .compat td:last-child { white-space: normal; } }
-  .shot { will-change: transform; }
+  .hero .intro { position: relative; z-index: 1; will-change: transform, opacity; }
+  .shot { z-index: 2; will-change: transform; transform-origin: 50% 0; }
   .reveal { opacity: 0; transform: translateY(26px); transition: opacity .6s cubic-bezier(.2,.6,.2,1), transform .6s cubic-bezier(.2,.6,.2,1); }
   .reveal.in { opacity: 1; transform: none; }
   @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
@@ -118,6 +119,7 @@
 
 <header class="hero">
   <div class="wrap">
+    <div class="intro">
     <span class="badge"><i></i>Android · Free &amp; open source</span>
     <h1>Your phone is your PC.<br><span>Plug in and get to work.</span></h1>
     <p class="sub">PocketDesk turns your Android phone into a desktop-style workspace. Connect it to a monitor or TV and get windows, a dock and a full desktop on the big screen, with your phone as the trackpad and keyboard.</p>
@@ -126,6 +128,7 @@
       <a class="btn btn-outline" href="/tv"><span class="ic" data-i="wifi"></span>Wireless</a>
     </div>
     <p class="note">Free APK · Android 8.0+ · Works with phones that support USB‑C video out · <a class="dl" href="/demo"><span class="ic" data-i="play"></span>Interactive demo</a></p>
+    </div>
     <div class="shot"><picture><source srcset="assets/hero.webp" type="image/webp"><img src="assets/hero.png" width="1600" height="1138" alt="PocketDesk desktop on an external display, controlled from a phone" fetchpriority="high" decoding="async"></picture></div>
   </div>
 </header>
@@ -236,13 +239,18 @@
 (() => {
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  // Parallax: the hero screenshot scrolls a touch slower than the page.
+  // Parallax: the hero text drifts down and fades while the mockup scrolls up over it.
   const shot = document.querySelector('.hero .shot');
+  const intro = document.querySelector('.hero .intro');
   let raf = 0;
   const parallax = () => {
     raf = 0;
-    const y = Math.min(window.scrollY, 1200);
-    if (shot) shot.style.transform = `translateY(${(y * 0.14).toFixed(1)}px)`;
+    const y = Math.max(0, Math.min(window.scrollY, 900));
+    if (intro) {
+      intro.style.transform = `translateY(${(y * 0.55).toFixed(1)}px) scale(${(1 - y * 0.00012).toFixed(4)})`;
+      intro.style.opacity = Math.max(0, 1 - y / 520).toFixed(3);
+    }
+    if (shot) shot.style.transform = `scale(${(0.94 + Math.min(y, 500) * 0.00012).toFixed(4)})`;
   };
   addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(parallax); }, { passive: true });
   parallax();
