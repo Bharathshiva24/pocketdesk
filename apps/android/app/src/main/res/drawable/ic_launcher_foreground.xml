@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- PocketDesk "P" mark (same geometry as public/icon.svg), centred in the adaptive-icon safe zone. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp" android:height="108dp"
+    android:viewportWidth="1240" android:viewportHeight="1240">
+    <group android:translateX="3" android:translateY="-11">
+        <path android:strokeColor="#FFFFFF" android:strokeWidth="66" android:strokeLineCap="round" android:strokeLineJoin="round"
+            android:pathData="M363,915 V460 A113,113 0 0 1 476,346 H765 A113,113 0 0 1 878,459 V600 A138,138 0 0 1 740,738 H502 A47,47 0 0 0 455,785 V920" />
+        <path android:strokeColor="#FFFFFF" android:strokeWidth="46" android:strokeLineCap="round"
+            android:pathData="M458,480 A187,187 0 0 1 646,655" />
+        <path android:strokeColor="#FFFFFF" android:strokeWidth="46" android:strokeLineCap="round"
+            android:pathData="M458,562 A103,103 0 0 1 561,655" />
+        <path android:fillColor="#FFFFFF" android:pathData="M438,650 a30,30 0 1 0 60,0 a30,30 0 1 0 -60,0" />
+    </group>
+</vector>

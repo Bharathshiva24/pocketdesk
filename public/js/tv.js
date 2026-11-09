@@ -9,7 +9,7 @@
   const W = 1920, H = 1080, TOP = 76, DOCK = 156, GAP = 24;
   const AREA = { x: GAP, y: TOP + 16, w: W - GAP * 2, h: H - TOP - 16 - DOCK };
   const REPO_URL = 'https://github.com/Bharathshiva24/pocketdesk';
-  const VERSION = '1.0.0';
+  const VERSION = '1.1.0';
 
   // ------------------------------------------------------------- helpers
   const store = {
@@ -349,7 +349,7 @@
     emit(ev, d) { (this.listeners[ev] || []).forEach((fn) => fn(d)); }
     send(msg) { this.transport.send(msg); }
     deviceName() { return this.device?.name || 'your phone'; }
-    modeLabel() { return this.local ? 'Demo · in-page link' : this.transport.kind === 'p2p' ? 'Peer-to-peer · WebRTC' : 'Local server · WebSocket'; }
+    modeLabel() { const k = this.transport.kind; return k === 'native' ? 'Wired display · offline' : this.local ? 'Demo · in-page link' : k === 'p2p' ? 'Peer-to-peer · WebRTC' : 'Local server · WebSocket'; }
 
     // ---------- build
     build() {
@@ -811,7 +811,7 @@
       win.footer = h('div', { class: 'win-foot' }); win.footer.hidden = true;
       win.el = h('div', { class: 'win opening' },
         h('div', { class: 'win-head' }, h('span', { class: 'icon-box' }, ic(CATALOG[id].icon)), h('div', { class: 'win-tt' }, win.titleEl, win.descEl), win.tools,
-          h('div', { class: 'win-ctl' }, iconBtn('minus', () => this.minimize(win), 'Minimise'), win.maxBtn, iconBtn('x', () => this.closeWin(win), 'Close'))),
+          h('div', { class: 'win-ctl' }, iconBtn('winMin', () => this.minimize(win), 'Minimise'), win.maxBtn, iconBtn('winClose', () => this.closeWin(win), 'Close'))),
         win.body, win.footer, h('div', { class: 'win-resize' }));
       win.title = CATALOG[id].name;
       win.setTitle = (t) => { win.title = t; win.titleEl.textContent = t; this.renderDock(); this.refreshStatus(); };

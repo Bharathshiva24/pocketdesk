@@ -14,7 +14,7 @@ Your Android phone or iPhone becomes its trackpad, keyboard and casting remote. 
 [![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](LICENSE)
 ![No build step](https://img.shields.io/badge/build-none-lightgrey)
 
-<img src="docs/images/hero.png" alt="PocketDesk on a display, controlled from a phone" width="100%">
+<img src="docs/images/hero.webp" alt="PocketDesk on a display, controlled from a phone" width="100%">
 
 <img src="docs/images/phone-screens.png" alt="PocketDesk phone screens: connect, trackpad, apps, cast, now playing" width="100%">
 
@@ -29,6 +29,7 @@ Your Android phone or iPhone becomes its trackpad, keyboard and casting remote. 
 - **Built-in apps.** Photos, Player, Music, Notes, Browser, Calculator and Settings.
 - **Peer-to-peer.** Phone and TV talk directly over WebRTC, so your files never touch a server.
 - **Works everywhere.** Samsung (Tizen), LG (webOS), Android/Google TV, Fire TV, or any computer plugged into the TV over HDMI. The TV remote's arrow keys move the pointer and OK clicks.
+- **Any TV, even offline.** With the Android or iOS app, plug your phone into any HDMI screen (USB‑C → HDMI, or Lightning AV adapter) and the desktop appears on it. No smart TV, no Wi‑Fi, no internet needed. See [Wired mode](docs/WIRED.md).
 
 ## Quick start
 
@@ -50,6 +51,10 @@ npm start
 ```
 
 The server prints a LAN address such as `http://192.168.1.20:8080`. Open `/tv` on the TV and scan the QR code. In this mode, pairing and input go through your own server over WebSocket, and media streams from it with seeking support. Nothing leaves your network.
+
+### Wired: any TV or monitor, no internet
+
+Install the native app ([Android](apps/android) · [iOS](apps/ios)), connect your phone to the TV with a USB‑C → HDMI cable, and choose that HDMI input on the TV. The desktop runs from your phone and appears on the big screen, while your phone stays the trackpad. Build steps and phone compatibility: **[docs/WIRED.md](docs/WIRED.md)**.
 
 ### Deploy your own copy
 
@@ -97,6 +102,8 @@ public/            The app: static, no build step
   js/transport.js  WebSocket, WebRTC (PeerJS) and in-page transports
   js/icons.js      Lucide icons and the app catalogue
   vendor/          PeerJS and QR code generator (browser builds)
+apps/android/      Native Android app (wired / external-display mode)
+apps/ios/          Native iOS app (XcodeGen project)
 server/index.js    Optional self-hosted server
 tests/             node:test integration tests
 tools/             Vendoring and single-file demo bundler
@@ -105,7 +112,8 @@ docs/images/       Screenshots
 
 ## Limitations
 
-- **Your phone's own apps.** A web app can't show other phone apps on the TV. PocketDesk runs its own apps on the TV and uses your phone as the controller. Mirroring Android apps would need a native Android app; iOS doesn't allow it for third-party apps.
+- **Your phone's own apps.** PocketDesk runs its own apps on the TV and uses your phone as the controller; it doesn't put other phone apps (Instagram, YouTube…) into its windows.
+- **Wired mode needs video out.** Your phone must support video over USB‑C (or use Apple's Lightning AV adapter). See the [compatibility table](docs/WIRED.md#compatibility).
 - **Restrictive networks.** A few corporate or mobile networks block peer-to-peer connections. Use the self-hosted mode there.
 - **Embedded websites.** Many sites refuse to be shown inside another page, so they'll appear blank in the Browser app.
 - **Secure context features.** Screen wake lock and battery level need HTTPS. They work on the hosted version, and quietly switch off on a plain-HTTP LAN server.

@@ -3,6 +3,9 @@
 //   WSTransport   – talks to the optional Node server (LAN / self-hosted).
 //   PeerTransport – serverless: phone ⇄ TV over WebRTC (PeerJS for signalling).
 //                   This is what the static Vercel deployment uses.
+//   NativeTransport – inside the PocketDesk Android/iOS app: the phone drives
+//                   a TV or monitor plugged in over HDMI / USB-C. Fully offline;
+//                   the native shell relays messages between its two WebViews.
 //   LocalBus      – two in-page endpoints, used by the side-by-side demo.
 //
 // All three expose the same tiny API: connect(), send(msg), onMessage(fn),
@@ -203,6 +206,45 @@
     }
   }
 
+  // ------------------------------------------------------------------ Native shell (wired display)
+  const hasNative = () => !!(global.PocketDeskNative || (global.webkit && global.webkit.messageHandlers && global.webkit.messageHandlers.pocketdesk));
+  const toBase64 = (blob) => new Promise((resolve, reject) => {
+    const r = new FileReader();
+    r.onload = () => resolve(String(r.result).slice(String(r.result).indexOf(',') + 1));
+    r.onerror = () => reject(r.error);
+    r.readAsDataURL(blob);
+  });
+
+  class NativeTransport extends Emitter {
+    constructor(role) {
+      super();
+      this.kind = 'native'; this.role = role;
+      // The native shell calls PocketDeskBridge.receive(json) to deliver messages.
+      global.PocketDeskBridge = { receive: (json) => { try { this._emit(typeof json === 'string' ? JSON.parse(json) : json); } catch (e) { console.error(e); } } };
+    }
+    _post(type, payload = {}) {
+      const body = JSON.stringify({ type, role: this.role, ...payload });
+      if (global.PocketDeskNative) global.PocketDeskNative.post(body);
+      else global.webkit.messageHandlers.pocketdesk.postMessage(body);
+    }
+    connect() { this._setStatus('open'); this._post('ready'); }
+    send(msg) { this._post('msg', { msg }); }
+    close() {}
+    /** Streams the file to the app's local media folder; the TV page loads it from there. */
+    async upload(file, onProgress) {
+      const ext = ((file.name || '').match(/\.[a-z0-9]{1,5}$/i) || [''])[0].toLowerCase();
+      const name = Math.random().toString(36).slice(2) + Date.now().toString(36) + ext;
+      const CH = 384 * 1024;
+      this._post('file-start', { name });
+      for (let off = 0; off < file.size; off += CH) {
+        this._post('file-chunk', { name, data: await toBase64(file.slice(off, off + CH)) });
+        if (onProgress) onProgress(Math.min(1, (off + CH) / file.size));
+      }
+      this._post('file-end', { name });
+      return 'media/' + name;
+    }
+  }
+
   // ------------------------------------------------------------------ In-page (demo)
   class LocalEnd extends Emitter {
     constructor() { super(); this.peer = null; this.kind = 'local'; }
@@ -218,6 +260,7 @@
    * otherwise serverless WebRTC. Override with ?mode=server or ?mode=p2p.
    */
   async function createTransport(role) {
+    if (hasNative()) return new NativeTransport(role);
     const mode = new URLSearchParams(location.search).get('mode');
     if (mode === 'p2p') return new PeerTransport(role);
     if (mode === 'server') return new WSTransport();
@@ -228,5 +271,5 @@
     return new PeerTransport(role);
   }
 
-  global.PocketDeskTransport = { WSTransport, PeerTransport, LocalBus, createTransport };
+  global.PocketDeskTransport = { WSTransport, PeerTransport, NativeTransport, LocalBus, createTransport, hasNative };
 })(window);

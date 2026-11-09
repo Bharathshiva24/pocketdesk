@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.1.0 — 2026-11-10
+
+- **Wired mode:** native Android and iOS apps show the desktop on any TV or monitor connected over HDMI / USB‑C, fully offline (no smart TV or internet needed)
+- `NativeTransport` bridge in the web app, with a "Connect a TV or monitor" guide on the phone
+- Self-hosted Geist fonts (offline-ready, no Google Fonts request)
+- Equal-size window controls, device mockups on the landing page, WebP hero image
+
 ## 1.0.0 — 2026-11-10
 
 First public release.

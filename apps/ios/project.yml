@@ -1,0 +1,46 @@
+# Generate the Xcode project with XcodeGen:  brew install xcodegen && xcodegen
+name: PocketDesk
+options:
+  bundleIdPrefix: app.pocketdesk
+  deploymentTarget:
+    iOS: "16.0"
+  createIntermediateGroups: true
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    MARKETING_VERSION: "1.0.0"
+    CURRENT_PROJECT_VERSION: "1"
+targets:
+  PocketDesk:
+    type: application
+    platform: iOS
+    sources:
+      - path: PocketDesk
+      # The web app is bundled (folder reference "public") so everything works offline.
+      - path: ../../public
+        type: folder
+        buildPhase: resources
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: app.pocketdesk.ios
+        TARGETED_DEVICE_FAMILY: "1,2"
+        CODE_SIGN_STYLE: Automatic
+        DEVELOPMENT_TEAM: ""          # set your Apple team ID (or pick it in Xcode › Signing)
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        INFOPLIST_FILE: PocketDesk/Info.plist
+        GENERATE_INFOPLIST_FILE: NO
+    info:
+      path: PocketDesk/Info.plist
+      properties:
+        CFBundleDisplayName: PocketDesk
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        UILaunchScreen:
+          UIColorName: ""
+        UIRequiresFullScreen: true
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
+        UISupportedInterfaceOrientations~ipad: [UIInterfaceOrientationPortrait, UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: true
+        NSPhotoLibraryUsageDescription: PocketDesk lets you pick photos and videos to show on your TV.
+        NSCameraUsageDescription: PocketDesk can use the camera to scan a TV pairing code.

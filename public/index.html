@@ -15,9 +15,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="css/fonts.css">
 <style>
   :root { --fg:#09090b; --muted:#f4f4f5; --muted-fg:#71717a; --border:#e4e4e7; --orange-50:#fff7ed; --orange-100:#ffedd5; --orange-200:#fed7aa; --orange-600:#ea580c; --orange-700:#c2410c; --emerald-50:#ecfdf5; --emerald-200:#a7f3d0; --emerald-500:#10b981; --emerald-700:#047857; }
   * { box-sizing: border-box; }
@@ -101,7 +99,7 @@
       <a class="btn btn-outline" href="/demo"><span class="ic" data-i="play"></span>Try the live demo</a>
     </div>
     <p class="note">Open <code>/tv</code> on the TV, then scan the QR code with your phone.</p>
-    <div class="shot"><img src="assets/hero.png" width="1600" height="1137" alt="PocketDesk on a display with the phone controller beside it"></div>
+    <div class="shot"><picture><source srcset="assets/hero.webp" type="image/webp"><img src="assets/hero.png" width="1600" height="1138" alt="PocketDesk on a display with the phone controller beside it" fetchpriority="high" decoding="async"></picture></div>
   </div>
 </header>
 

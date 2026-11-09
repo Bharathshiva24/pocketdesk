@@ -148,7 +148,8 @@
 .pd-tv .win-tools { display: flex; align-items: center; gap: 10px; }
 .pd-tv .win-ctl { display: flex; gap: 2px; }
 .pd-tv .win-ctl .btn-icon { width: 42px; height: 42px; }
-.pd-tv .win-ctl .ic { width: 18px; height: 18px; }
+.pd-tv .win-ctl .ic { width: 22px; height: 22px; } /* glyphs are drawn in a 10/24 box → ~9px each */
+.pd-tv .win-ctl .ic svg { stroke-width: 1.5; }
 .pd-tv .win-ctl .btn:last-child:is(:hover, .hov) { background: var(--red-50); color: var(--red-700); }
 .pd-tv .win-body { position: relative; flex: 1; min-height: 0; display: flex; flex-direction: column; }
 .pd-tv .win-body > .scroll { flex: 1; min-height: 0; }

@@ -366,7 +366,9 @@
       if (this.local) {
         this.tr.connect();
         this.paired = true; this.pairEl.hidden = true; this.mainEl.hidden = false;
-        this.setConn('Demo link', true);
+        this.native = this.tr.kind === 'native';
+        this.setConn(this.native ? 'Wired · HDMI / USB-C' : 'Demo link', true);
+        if (this.native) { this.tvName = 'External display'; this.tvNameEl.textContent = this.tvName; this.buildDisplayHint(); }
         this.send({ t: 'peer', device: this.device });
         this.renderMedia({});
         return;
@@ -404,6 +406,15 @@
           break;
         }
         case 'ping': this.send({ t: 'pong', ts: m.ts }); break;
+        case 'tv-ready': // the external display just came up: introduce ourselves again
+          this.send({ t: 'peer', device: this.device });
+          if (this.battery != null) this.send({ t: 'device', device: { battery: this.battery, charging: this.charging } });
+          break;
+        case 'display': // from the native shell: is a TV / monitor plugged in?
+          if (this.displayHint) this.displayHint.hidden = !!m.connected;
+          if (m.connected && m.name) { this.tvName = m.name; this.tvNameEl.textContent = m.name; }
+          this.setConn(m.connected ? 'Wired · HDMI / USB-C' : 'No display connected', !!m.connected);
+          break;
         case 'pong': this.rtt = Math.max(1, Math.round(performance.now() - m.ts)); this.setConn('Connected', true); break;
         case 'error': store.set('code', null); this.code = null; this.showPair(m.msg); break;
         case 'kicked': store.set('code', null); this.code = null; this.showPair('The TV disconnected this phone.'); break;
@@ -417,6 +428,21 @@
         default: break;
       }
     }
+    // Wired mode (native app): guidance shown until a TV or monitor is plugged in.
+    buildDisplayHint() {
+      const step = (n, title, text) => h('div', { class: 'row' }, h('span', { class: 'step-n' }, String(n)), h('span', { class: 'list-main wrap' }, h('span', { class: 'list-t' }, title), h('span', { class: 'list-s' }, text)));
+      this.displayHint = h('div', { class: 'screen display-hint scroll' },
+        h('div', { class: 'dh-art' }, h('span', { class: 'dh-tv' }, ic('monitor')), h('span', { class: 'dh-cable' }), h('span', { class: 'dh-phone' }, ic('phone'))),
+        h('div', {}, h('h1', { class: 'title-xl' }, 'Connect a TV or monitor'), h('p', { class: 'muted lead' }, 'Any screen with an HDMI input works — it doesn’t need to be a smart TV or have internet.')),
+        h('div', { class: 'card list-card' },
+          step(1, 'Plug in your phone', 'Use a USB‑C to HDMI cable or adapter (Lightning Digital AV Adapter on older iPhones).'),
+          step(2, 'Pick the HDMI input', 'Press Input or Source on the TV remote and choose the port you used.'),
+          step(3, 'Drive the desktop', 'PocketDesk appears on the big screen. This phone becomes the trackpad and keyboard.')),
+        h('p', { class: 'muted small center' }, 'Wireless displays (Miracast / AirPlay) work too where your phone supports them.'));
+      this.displayHint.hidden = true;
+      this.mount.append(this.displayHint);
+    }
+
     disconnect(switching) {
       store.set('code', null); this.code = null;
       this.tr.close(); this.showPair(switching ? '' : 'Disconnected.');

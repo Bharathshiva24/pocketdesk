@@ -25,6 +25,7 @@ npm start              # self-hosted server on http://localhost:8080
 | `public/js/icons.js` | Lucide icons and the shared app catalogue |
 | `public/css/*.css` | Design tokens and styles (Creative Tim UI / shadcn look) |
 | `server/index.js` | Optional self-hosted server (pairing, relay, media streaming) |
+| `apps/android`, `apps/ios` | Native shells for wired HDMI / USB‑C mode (see `docs/WIRED.md`) |
 | `tests/` | `node:test` integration tests |
 
 ## Guidelines

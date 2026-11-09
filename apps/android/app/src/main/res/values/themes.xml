@@ -1,0 +1,15 @@
+<resources>
+    <style name="Theme.PocketDesk" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@color/canvas</item>
+        <item name="android:statusBarColor">@color/canvas</item>
+        <item name="android:navigationBarColor">@color/canvas</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar">true</item>
+    </style>
+    <!-- Full-screen, no chrome: used for the TV / monitor -->
+    <style name="Theme.PocketDesk.Presentation" parent="android:Theme.Material.Light.NoActionBar.Fullscreen">
+        <item name="android:windowBackground">@color/canvas</item>
+    </style>
+    <color name="canvas">#FAFAFA</color>
+    <color name="brand">#EE4806</color>
+</resources>

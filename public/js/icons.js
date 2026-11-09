@@ -40,8 +40,11 @@
     square: '<rect width="18" height="18" x="3" y="3" rx="2"/>',
     maximize: '<path d="M8 3H5a2 2 0 0 0-2 2v3"/><path d="M21 8V5a2 2 0 0 0-2-2h-3"/><path d="M3 16v3a2 2 0 0 0 2 2h3"/><path d="M16 21h3a2 2 0 0 0 2-2v-3"/>',
     restore: '<path d="M8 3v3a2 2 0 0 1-2 2H3"/><path d="M21 8h-3a2 2 0 0 1-2-2V3"/><path d="M3 16h3a2 2 0 0 1 2 2v3"/><path d="M16 21v-3a2 2 0 0 1 2-2h3"/>',
-    winMax: '<rect x="6.5" y="6.5" width="11" height="11" rx="1.5"/>',
-    winRestore: '<rect x="5.5" y="8.5" width="10" height="10" rx="1.5"/><path d="M8.5 8.5V7a1.5 1.5 0 0 1 1.5-1.5h7A1.5 1.5 0 0 1 18.5 7v7a1.5 1.5 0 0 1-1.5 1.5h-1.5"/>',
+    // Window controls share one 10×10 box (x/y 7–17) so −, □ and × read the same size.
+    winMin: '<path d="M7 12h10"/>',
+    winMax: '<rect x="7" y="7" width="10" height="10" rx="1.5"/>',
+    winRestore: '<rect x="7" y="9" width="8" height="8" rx="1.5"/><path d="M9 7h6.5A1.5 1.5 0 0 1 17 8.5V15"/>',
+    winClose: '<path d="m7 7 10 10"/><path d="M17 7 7 17"/>',
     copy: '<rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>',
     tile: '<rect width="7" height="18" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/>',
     monitor: '<rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/>',
