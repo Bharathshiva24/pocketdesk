@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="135 143 970 970">
+  <defs><linearGradient id="pdlogo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F24E07"/><stop offset="1" stop-color="#E63A04"/></linearGradient></defs>
+  <rect x="135" y="143" width="970" height="970" rx="235" fill="url(#pdlogo)"/>
+  <g transform="translate(3 3)"><g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke-width="66" d="M363 915 V460 A113 113 0 0 1 476 346 H765 A113 113 0 0 1 878 459 V600 A138 138 0 0 1 740 738 H502 A47 47 0 0 0 455 785 V920"/>
+    <path stroke-width="46" d="M458 480 A187 187 0 0 1 646 655"/>
+    <path stroke-width="46" d="M458 562 A103 103 0 0 1 561 655"/>
+  </g>
+  <circle cx="468" cy="650" r="30" fill="#fff"/></g>
+</svg>

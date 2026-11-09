@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PocketDesk — Live demo</title>
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="css/tv.css">
+<link rel="stylesheet" href="css/phone.css">
+<style>
+  html, body { margin: 0; min-height: 100%; background: #f4f4f5; color: #09090b; font: 14px/1.5 "Geist", "Inter", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  .demo { display: grid; grid-template-columns: minmax(0, 1fr) 360px; grid-template-rows: auto minmax(0, 1fr); gap: 20px 28px; padding: 20px 28px 28px; height: 100vh; box-sizing: border-box; }
+  .bar { grid-column: 1 / -1; display: flex; align-items: center; gap: 12px; }
+  .bar b { font-size: 16px; }
+  .bar .sp { flex: 1; }
+  .bar a { display: inline-flex; align-items: center; height: 34px; padding: 0 14px; border-radius: 8px; border: 1px solid #e4e4e7; background: #fff; color: inherit; text-decoration: none; font-weight: 500; }
+  .bar a.brand { background: #ea580c; color: #fff; border-color: #ea580c; }
+  .logo { display: inline-block; width: 32px; height: 32px; }
+  .logo svg { width: 100%; height: 100%; display: block; }
+  .col { display: flex; flex-direction: column; min-height: 0; }
+  .lbl { margin: 0 2px 10px; color: #71717a; font-size: 13px; }
+  .lbl strong { color: #09090b; font-weight: 600; }
+  .tvframe { flex: 1; min-height: 0; display: grid; place-items: center; }
+  .tvbezel { width: 100%; aspect-ratio: 16 / 9; max-height: 100%; padding: 10px; border-radius: 14px; background: #18181b; box-shadow: 0 30px 60px -24px rgb(24 24 27 / .45); box-sizing: border-box; }
+  #tv { width: 100%; height: 100%; border-radius: 4px; }
+  .stand { width: 20%; height: 12px; margin: 0 auto; background: #27272a; border-radius: 0 0 10px 10px; }
+  .phoneframe { flex: 1; min-height: 0; display: flex; justify-content: center; }
+  .phonebody { width: 340px; height: min(100%, 720px); padding: 10px; border-radius: 48px; background: #18181b; box-shadow: 0 30px 60px -24px rgb(24 24 27 / .45); box-sizing: border-box; }
+  #phone { width: 100%; height: 100%; border-radius: 39px; }
+  .tips { margin: 12px 2px 0; color: #71717a; font-size: 12.5px; }
+  @media (max-width: 900px) { .demo { grid-template-columns: 1fr; height: auto; } .tvframe { flex: none; } .phonebody { height: 680px; } }
+</style>
+</head>
+<body>
+<div class="demo">
+  <div class="bar"><span class="logo" id="lg"></span><b>PocketDesk</b><span style="color:#71717a">Live demo — TV and phone linked in this page</span><span class="sp"></span><a href="/">About</a><a class="brand" href="/tv">Use with a real TV</a></div>
+  <div class="col">
+    <div class="lbl"><strong>TV</strong> · 1920×1080 desktop, scaled to fit</div>
+    <div class="tvframe"><div style="width:100%"><div class="tvbezel"><div id="tv"></div></div><div class="stand"></div></div></div>
+  </div>
+  <div class="col">
+    <div class="lbl"><strong>Phone</strong> · the same on Android and iPhone</div>
+    <div class="phoneframe"><div class="phonebody"><div id="phone"></div></div></div>
+    <div class="tips">Drag on the trackpad to move the pointer, tap to click, hold then drag to move windows. Use Cast to send your own photos or videos. You can also use your mouse directly on the TV.</div>
+  </div>
+</div>
+<script src="vendor/qrcode.js"></script>
+<script src="js/icons.js"></script>
+<script src="js/transport.js"></script>
+<script src="js/tv.js"></script>
+<script src="js/phone.js"></script>
+<script>
+  document.getElementById('lg').innerHTML = PocketDeskIcons.logo;
+  const [tvEnd, phoneEnd] = PocketDeskTransport.LocalBus.pair();
+  const desk = new PocketDeskTV.TVDesktop(document.getElementById('tv'), tvEnd, { local: true });
+  const remote = new PocketDeskPhone.PhoneRemote(document.getElementById('phone'), phoneEnd, { local: true });
+
+  // Seed the desktop with generated sample images so the demo isn't empty.
+  function sample(name, stops, seed) {
+    const cv = document.createElement('canvas'); cv.width = 1200; cv.height = 900;
+    const g = cv.getContext('2d');
+    const gr = g.createLinearGradient(0, 0, 1200, 900); stops.forEach((c, i) => gr.addColorStop(i / (stops.length - 1), c));
+    g.fillStyle = gr; g.fillRect(0, 0, 1200, 900);
+    for (let i = 0; i < 5; i++) {
+      g.fillStyle = '#ffffff'; g.globalAlpha = 0.06 + i * 0.05;
+      g.beginPath(); g.moveTo(0, 900);
+      for (let x = 0; x <= 1200; x += 30) g.lineTo(x, 470 + i * 80 + Math.sin(x / (160 + i * 30) + seed + i) * (70 - i * 9));
+      g.lineTo(1200, 900); g.fill();
+    }
+    g.globalAlpha = 1;
+    return new Promise((r) => cv.toBlob((b) => r({ url: URL.createObjectURL(b), kind: 'image', name }), 'image/jpeg', 0.88));
+  }
+  Promise.all([
+    sample('Ridgeline.jpg', ['#f97316', '#fb923c', '#7c2d12'], 1),
+    sample('Tide.jpg', ['#0ea5e9', '#38bdf8', '#0c4a6e'], 2),
+    sample('Meadow.jpg', ['#10b981', '#6ee7b7', '#064e3b'], 3),
+    sample('Dunes.jpg', ['#f59e0b', '#fcd34d', '#78350f'], 4),
+  ]).then((items) => { desk.media.push(...items); desk.emit('media'); desk.refreshStatus(); desk.openApp('gallery'); });
+</script>
+</body>
+</html>

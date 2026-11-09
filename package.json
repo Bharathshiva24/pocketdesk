@@ -1,0 +1,45 @@
+{
+  "name": "pocketdesk",
+  "version": "1.0.0",
+  "description": "Turn any TV into a desktop you drive from your phone — trackpad, keyboard, casting and media controls. No install.",
+  "license": "MIT",
+  "author": "Bharath Shiva (https://github.com/Bharathshiva24)",
+  "homepage": "https://github.com/Bharathshiva24/pocketdesk#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bharathshiva24/pocketdesk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Bharathshiva24/pocketdesk/issues"
+  },
+  "keywords": [
+    "tv",
+    "desktop",
+    "remote",
+    "trackpad",
+    "webrtc",
+    "peerjs",
+    "dex",
+    "smart-tv",
+    "pwa"
+  ],
+  "main": "server/index.js",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "npx --yes serve public -l 3000",
+    "test": "node --test tests/server.test.js tests/static.test.js",
+    "vendor": "node tools/vendor.js",
+    "build:demo": "node tools/build-demo.js"
+  },
+  "dependencies": {
+    "express": "^4.21.0",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "peerjs": "1.5.5",
+    "qrcode-generator": "1.4.4"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "PocketDesk",
+  "short_name": "PocketDesk",
+  "description": "Your phone is the trackpad, keyboard and remote for a desktop on your TV.",
+  "start_url": "/phone",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#fafafa",
+  "theme_color": "#fafafa",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

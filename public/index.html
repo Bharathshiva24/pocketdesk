@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PocketDesk — your phone is the remote, your TV is the desktop</title>
+<meta name="description" content="PocketDesk turns any TV with a web browser into a desktop you drive from your phone — trackpad, keyboard, casting and media controls. Open source, no install.">
+<meta name="theme-color" content="#ffffff">
+<meta property="og:title" content="PocketDesk — your phone is the remote, your TV is the desktop">
+<meta property="og:description" content="Turn any TV into a desktop you drive from your phone. Open source, no install, Android & iPhone.">
+<meta property="og:image" content="/assets/og.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@500&display=swap">
+<style>
+  :root { --fg:#09090b; --muted:#f4f4f5; --muted-fg:#71717a; --border:#e4e4e7; --orange-50:#fff7ed; --orange-100:#ffedd5; --orange-200:#fed7aa; --orange-600:#ea580c; --orange-700:#c2410c; --emerald-50:#ecfdf5; --emerald-200:#a7f3d0; --emerald-500:#10b981; --emerald-700:#047857; }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; color: var(--fg); background: #fff; font: 16px/1.6 "Geist", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+  .ic { display: inline-grid; place-items: center; width: 18px; height: 18px; flex: none; }
+  .ic svg { width: 100%; height: 100%; display: block; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 44px; padding: 0 18px; border-radius: 8px; font-weight: 500; font-size: 15px; white-space: nowrap; transition: background .15s, border-color .15s; }
+  .btn-brand { background: var(--orange-600); color: #fff; box-shadow: 0 1px 2px rgb(0 0 0 / .05); }
+  .btn-brand:hover { background: var(--orange-700); }
+  .btn-outline { background: #fff; border: 1px solid var(--border); box-shadow: 0 1px 2px rgb(0 0 0 / .05); }
+  .btn-outline:hover { background: var(--muted); }
+  .btn-sm { height: 36px; padding: 0 14px; font-size: 14px; }
+  .badge { display: inline-flex; align-items: center; gap: 7px; height: 26px; padding: 0 11px; border-radius: 999px; font-size: 13px; font-weight: 500; border: 1px solid var(--orange-200); background: var(--orange-50); color: var(--orange-700); }
+  .badge i { width: 6px; height: 6px; border-radius: 50%; background: var(--orange-600); }
+  .logo { display: inline-grid; place-items: center; width: 34px; height: 34px; border-radius: 9px; background: var(--orange-600); color: #fff; }
+  .logo .ic { width: 18px; height: 18px; }
+  .logo-img { display: block; width: 34px; height: 34px; }
+  nav.top { position: sticky; top: 0; z-index: 10; background: rgb(255 255 255 / .85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+  nav.top .wrap { display: flex; align-items: center; gap: 28px; height: 64px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 17px; }
+  .links { display: flex; gap: 24px; color: var(--muted-fg); font-size: 15px; margin-right: auto; }
+  .links a:hover { color: var(--fg); }
+  .hero { text-align: center; padding: 84px 0 40px; position: relative; overflow: hidden; }
+  .hero::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 56px 56px; opacity: .55; -webkit-mask-image: radial-gradient(ellipse 60% 55% at 50% 30%, #000 20%, transparent 75%); mask-image: radial-gradient(ellipse 60% 55% at 50% 30%, #000 20%, transparent 75%); pointer-events: none; }
+  .hero > * { position: relative; }
+  h1 { font-size: clamp(38px, 6vw, 66px); line-height: 1.05; letter-spacing: -.035em; margin: 22px auto 18px; max-width: 900px; font-weight: 700; }
+  h1 span { color: var(--muted-fg); }
+  .sub { font-size: 19px; color: var(--muted-fg); max-width: 640px; margin: 0 auto 30px; }
+  .ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .note { margin-top: 16px; font-size: 14px; color: var(--muted-fg); }
+  .shot { position: relative; max-width: 1080px; margin: 56px auto 0; }
+  .shot .tv { border-radius: 16px; border: 1px solid var(--border); box-shadow: 0 30px 80px -20px rgb(24 24 27 / .25), 0 2px 8px rgb(0 0 0 / .05); overflow: hidden; background: #fafafa; }
+  .shot img { display: block; width: 100%; height: auto; }
+  .shot .phone { position: absolute; right: -2%; bottom: -8%; width: 21%; border-radius: 28px; border: 6px solid #18181b; box-shadow: 0 30px 60px -15px rgb(24 24 27 / .35); overflow: hidden; background: #fafafa; }
+  section { padding: 88px 0; }
+  .eyebrow { font-size: 14px; font-weight: 600; color: var(--orange-700); }
+  h2 { font-size: clamp(28px, 4vw, 40px); letter-spacing: -.03em; line-height: 1.15; margin: 8px 0 14px; }
+  .lede { color: var(--muted-fg); font-size: 18px; max-width: 620px; margin: 0; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px; }
+  .card { border: 1px solid var(--border); border-radius: 14px; padding: 24px; background: #fff; box-shadow: 0 1px 2px rgb(0 0 0 / .05); }
+  .card h3 { font-size: 17px; margin: 16px 0 6px; letter-spacing: -.01em; }
+  .card p { margin: 0; color: var(--muted-fg); font-size: 15px; }
+  .ibox { display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: 10px; background: var(--muted); }
+  .ibox .ic { width: 20px; height: 20px; }
+  .steps { counter-reset: s; }
+  .step-n { display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--orange-50); border: 1px solid var(--orange-200); color: var(--orange-700); font-weight: 600; font-size: 14px; }
+  .alt { background: #fafafa; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  details { border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; background: #fff; }
+  details + details { margin-top: 10px; }
+  summary { cursor: pointer; font-weight: 600; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+  summary::after { content: "+"; color: var(--muted-fg); font-weight: 400; }
+  details[open] summary::after { content: "–"; }
+  details p { color: var(--muted-fg); margin: 10px 0 0; }
+  .faq { max-width: 760px; margin-top: 32px; }
+  .cta-band { text-align: center; }
+  .cta-band .card { padding: 48px 24px; }
+  code { font: 500 14px "Geist Mono", ui-monospace, monospace; background: var(--muted); border: 1px solid var(--border); border-radius: 6px; padding: 2px 7px; }
+  footer { border-top: 1px solid var(--border); padding: 28px 0; color: var(--muted-fg); font-size: 14px; }
+  footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } .links { display: none; } .shot .phone { display: none; } nav .btn-outline { display: none; } section { padding: 64px 0; } }
+</style>
+</head>
+<body>
+<nav class="top">
+  <div class="wrap">
+    <a class="brand" href="/"><img class="logo-img" src="icon.svg" width="34" height="34" alt="">PocketDesk</a>
+    <div class="links"><a href="#features">Features</a><a href="#how">How it works</a><a href="#faq">FAQ</a></div>
+    <a class="btn btn-outline btn-sm" href="https://github.com/Bharathshiva24/pocketdesk" target="_blank" rel="noopener"><span class="ic" data-i="github"></span>GitHub</a>
+    <a class="btn btn-brand btn-sm" href="/tv">Open on TV</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="badge"><i></i>Open source · MIT · No install</span>
+    <h1>Your phone is the remote.<br><span>Your TV is the desktop.</span></h1>
+    <p class="sub">PocketDesk turns any TV with a web browser into a desktop with windows and a dock — and your Android or iPhone into its trackpad, keyboard and casting remote.</p>
+    <div class="ctas">
+      <a class="btn btn-brand" href="/tv"><span class="ic" data-i="tv"></span>Open on your TV</a>
+      <a class="btn btn-outline" href="/demo"><span class="ic" data-i="play"></span>Try the live demo</a>
+    </div>
+    <p class="note">Open <code>/tv</code> on the TV, then scan the QR code with your phone.</p>
+    <div class="shot">
+      <div class="tv"><img src="assets/preview-tv.png" width="1920" height="1080" alt="PocketDesk desktop on a TV: dock, Photos and Notes windows, status cards"></div>
+      <div class="phone"><img src="assets/preview-phone.png" width="402" height="874" alt="PocketDesk phone trackpad"></div>
+    </div>
+  </div>
+</header>
+
+<section id="features">
+  <div class="wrap">
+    <div class="eyebrow">Features</div>
+    <h2>A real desktop, on the biggest screen you own</h2>
+    <p class="lede">Built for the sofa: big type, a dock you can read from across the room, and controls that live in your hand.</p>
+    <div class="grid">
+      <div class="card"><span class="ibox"><span class="ic" data-i="touchpad"></span></span><h3>Trackpad &amp; gestures</h3><p>Tap to click, two fingers to scroll or right-click, hold to drag windows around.</p></div>
+      <div class="card"><span class="ibox"><span class="ic" data-i="keyboard"></span></span><h3>Your phone’s keyboard</h3><p>Type into any field on the TV — autocorrect and dictation included.</p></div>
+      <div class="card"><span class="ibox"><span class="ic" data-i="cast"></span></span><h3>Cast photos, video &amp; music</h3><p>Pick files from your library and they open on the TV with play, seek and volume control.</p></div>
+      <div class="card"><span class="ibox"><span class="ic" data-i="tile"></span></span><h3>Windows, dock &amp; snapping</h3><p>Move, resize, snap left/right, tile everything, and switch apps from the dock.</p></div>
+      <div class="card"><span class="ibox"><span class="ic" data-i="link"></span></span><h3>Peer-to-peer</h3><p>Phone and TV talk directly over WebRTC. Your files go device to device, not through a server.</p></div>
+      <div class="card"><span class="ibox"><span class="ic" data-i="phone"></span></span><h3>Android &amp; iPhone</h3><p>Nothing to install on either side. Add it to your home screen for an app-like feel.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="how" class="alt">
+  <div class="wrap">
+    <div class="eyebrow">How it works</div>
+    <h2>Connected in about ten seconds</h2>
+    <div class="grid steps">
+      <div class="card"><span class="step-n">1</span><h3>Open PocketDesk on the TV</h3><p>Use the TV’s web browser (Samsung, LG, Android TV, Fire TV) or any computer plugged in over HDMI. Go to <code>/tv</code>.</p></div>
+      <div class="card"><span class="step-n">2</span><h3>Scan the QR code</h3><p>Point your phone camera at the code on the TV, or open <code>/phone</code> and type the 6-digit code.</p></div>
+      <div class="card"><span class="step-n">3</span><h3>Drive the desktop</h3><p>Use the trackpad, type, open apps from the dock and cast your photos and videos.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="eyebrow">FAQ</div>
+    <h2>Good to know</h2>
+    <div class="faq">
+      <details open><summary>Can I run my phone’s own apps on the TV?</summary><p>Not with a web app. PocketDesk runs its own desktop apps on the TV and uses your phone as the controller. Mirroring Android apps would need a native Android app; iOS doesn’t allow it for third-party apps.</p></details>
+      <details><summary>Do my phone and TV need to be on the same Wi‑Fi?</summary><p>No — they only need internet access to find each other. On the same network the connection is direct and fastest. A few strict corporate or mobile networks block peer-to-peer traffic; the self-hosted server mode works there.</p></details>
+      <details><summary>Where do my photos go?</summary><p>Straight from your phone to the TV over an encrypted WebRTC data channel. They live only in the TV’s browser memory and disappear when you close the page.</p></details>
+      <details><summary>Can I host it myself?</summary><p>Yes. Run <code>npm start</code> for a LAN server, or deploy the static <code>public/</code> folder anywhere. See the README on GitHub.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <div class="card">
+      <h2>Turn on the big screen</h2>
+      <p class="lede" style="margin:0 auto 26px">Open PocketDesk on your TV and pair your phone. It’s free and open source.</p>
+      <div class="ctas"><a class="btn btn-brand" href="/tv">Open on your TV</a><a class="btn btn-outline" href="https://github.com/Bharathshiva24/pocketdesk" target="_blank" rel="noopener"><span class="ic" data-i="github"></span>Star on GitHub</a></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap"><span>© 2026 PocketDesk · MIT licence</span><span>Built with web standards · <a href="https://github.com/Bharathshiva24/pocketdesk">Source on GitHub</a></span></div>
+</footer>
+<script src="js/icons.js"></script>
+<script>document.querySelectorAll('[data-i]').forEach((el) => { el.innerHTML = PocketDeskIcons[el.dataset.i] || ''; });</script>
+</body>
+</html>
